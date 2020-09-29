@@ -1,0 +1,705 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>SynthesizerV周刊工作文档 MAF-100 (2.00)</title><link href='https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' /><link href='https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+@include-when-export url(https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext);
+@include-when-export url(https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext);
+
+:root {
+	--control-text-color: #777;
+}
+
+/**
+ * forked from pixyll.com
+ * MIT license
+ */
+
+h1,
+.h1,
+.f1 {
+	font-size: 2rem;
+	line-height: 2.5rem;
+}
+h2,
+.h2,
+.f2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+h3,
+.h3,
+.f3 {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul,
+pre[cid],
+div[cid],
+#typora-source {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+}
+
+h4 {
+	font-size: 1.13rem;
+}
+/*
+ Pixyll
+ A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.
+ Best served with BASSCSS (http://jxnblk.github.io/basscss)
+ Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander MIT License http://opensource.org/licenses/MIT
+
+*/
+
+body {
+	font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", "STSong", Serif;
+	line-height: 1.5rem;
+	font-weight: 400;
+}
+
+#write {
+	max-width: 914px;
+	color: #333;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media only screen and (min-width: 1700px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+}
+body {
+	font-size: 1.5rem;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.ty-table-edit {
+	background: #ededed;
+}
+
+table {
+	width: 100%;
+	font-size: 1.125rem;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+	padding: 12px;
+	line-height: 1.2;
+	vertical-align: top;
+	border-top: 1px solid #333;
+}
+table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #333;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+table > tbody + tbody {
+	border-top: 2px solid #333;
+}
+p {
+	font-weight: 300;
+	line-height: 1.5;
+}
+abbr {
+	border-bottom: 1px black dotted;
+	cursor: help;
+}
+pre,
+code {
+	font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code,
+.md-fences  {
+	color: #7a7a7a;
+}
+
+.md-fences {
+	padding: 1.125em;
+	margin-bottom: 0.88em;
+	font-size: 1rem;
+	border: 1px solid #7a7a7a;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+blockquote {
+	padding: 1.33em;
+	font-style: italic;
+	border-left: 5px solid #7a7a7a;
+	color: #555;
+}
+blockquote em {
+	color: #000;
+}
+blockquote footer {
+	font-size: .85rem;
+	font-style: normal;
+	background-color: #fff;
+	color: #7a7a7a;
+	border-color: transparent;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: "Lato", 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 1em 0 0.5em;
+}
+@media screen and (min-width: 48em) {
+	.h1,
+	h1 {
+		font-size: 3.250rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.298rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.625rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+	#write>h4.md-focus:before,
+	#write>h5.md-focus:before,
+	#write>h6.md-focus:before{
+		top: 1px;
+	}
+	.p,
+	p,
+	li {
+		font-size: 1.25rem;
+		line-height: 1.8;
+	}
+	table {
+		font-size: 1.25rem;
+	}
+}
+@media (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+}
+@media screen and (min-width: 64em) {
+	.h1,
+	h1 {
+		font-size: 4.498rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.29rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.9rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.591rem;
+	}
+	#write>h4.md-focus:before{
+		top:4px;
+	}
+}
+a {
+	color: #463F5C;
+	text-decoration: underline;
+}
+
+#write {
+	padding-top: 2rem;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	border: 0px;
+
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+
+	margin-left: -30px;
+	margin-bottom: 2em;
+	margin-top: -2010px;
+	padding-top: 2000px;
+	padding-bottom: 10px;
+	line-height: 1.5em;
+	color: #7a7a7a;
+	background-color: #fafafa;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	clear: both;
+	padding-left: 0;
+	font-size:1.125rem;
+}
+.md-image>.md-meta {
+	color: #463F5C
+}
+.footnotes {
+	font-size:1.1rem;
+}
+.md-tag {
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+}
+.code-tooltip {
+	background: white;
+}
+.code-tooltip-content {
+	font-size: 1.1rem;
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item {
+	padding-left:34px;
+}
+
+.md-task-list-item > input{
+	width: 1.25rem;
+	height: 1.25rem;
+	display: block;
+	-webkit-appearance: initial;
+	top: -0.2rem;
+	margin-left: -1.6em;
+	margin-top: calc(1rem - 7px);
+	border: none;
+}
+
+.md-task-list-item > input:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid #555;
+	border-radius: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #333;
+	border-width: 2px;
+	display:inline-block;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.4375rem;
+	left: 0.28125rem;
+	width: 0.9375rem;
+	height: 0.5rem;
+	border: 3px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+.md-tag {
+	color:inherit;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+#typora-sidebar {
+	font-size:1rem !important;
+}
+
+.html-for-mac #typora-sidebar {
+	background-color:white;
+}
+
+.outline-content li, .outline-content ul {
+	font-size:1rem !important;
+}
+
+.outline-title {
+	line-height: inherit;
+	margin-top: 10px;
+}
+
+.outline-expander {
+	width: 18px;
+}
+
+.outline-expander:before {
+ 	content: "+";
+	font-family: inherit;
+	color: rgb(108, 108, 108); 
+  	font-size: 1.5rem;
+ 	top: 0.1rem;
+}
+
+.outline-expander:hover:before {
+	content: "+";
+}
+
+.outline-item-open>.outline-item>.outline-expander:before{
+	content: "-";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.os-windows #typora-source {
+	font-family: inherit;
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.md-diagram-panel {
+	margin-top: 24px;
+	margin-left: -1.2em;
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -3.4em;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="synthesizerv周刊工作文档-maf-100" class="md-header-anchor"></a><span>SynthesizerV周刊工作文档 MAF-100</span></h1><p><code>文档版本号1.00</code></p><p><code>作者：A_LY_Z（bilibili uid:8037517)</code></p><p><span>本工作文档基于GFM的Markdown文法创建，以.pdf格式保存。本工作文档意在建立一个</span><strong><span>在自动化流程失效下的替代工作流程</span></strong><span>，具体而言，是在建立自动化流程的工作文档</span><strong><span>MAF-101</span></strong><span>因为流程出错、受阻或不可抗力等因素而无法有效运作时，以本文档提供的流程暂时替代，确保能及时完成工作。并予后人参考。</span></p><p><span>本文档假定此时SynthesizerV周刊服务器集群</span><strong><span>仅具备存储/读取功能</span></strong><span>，无法执行包括抽帧、添加播放数据、合并视频、压缩在内的所有工作，且均需由操作者在本地完成——也即是本文档编写时的现状。</span><code>2020年7月13日</code></p><p><span>本工作文档面向对计算机技术了解不深，但熟悉常规操作的操作者，基本不涉及独立编写命令、脚本的任务，或者提供了预制的脚本文件。本工作文档涉及的任何软件/插件均应保存在服务器端，并至少在其他云端保留一处备份，方便及时获取，建议相关的读者也在本地备份一份。</span></p><p><span>MAF的命名，来自MAF-101工作流程使用的GUI-MeGUI、帧服务器-AviSynth和程序-FFmpeg，本流程中并不全部涉及。</span></p><p>&nbsp;</p><p><span>本流程与自动化流程一并，贯彻了“三个一，一无损”的原则，即</span></p><p><strong><span>一次统一，一次编码，</span></strong></p><p><strong><span>一次分段，无损合并。</span></strong></p><p><span>将对视频的处理任务和可能导致的信息损失降到了最小。</span></p><p>&nbsp;</p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#synthesizerv周刊工作文档-maf-100">SynthesizerV周刊工作文档 MAF-100</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n16"><a class="md-toc-inner" href="#所用软件插件及预备工作">所用软件/插件及预备工作</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n17"><a class="md-toc-inner" href="#megui">MeGUI</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n30"><a class="md-toc-inner" href="#avisynth">AviSynth</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n33"><a class="md-toc-inner" href="#solveigmm-video-splitter">SolveigMM Video Splitter</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n37"><a class="md-toc-inner" href="#流程">流程</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n38"><a class="md-toc-inner" href="#流程概览">流程概览</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n40"><a class="md-toc-inner" href="#剪切片段">剪切片段</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n61"><a class="md-toc-inner" href="#统一规格添加数据图片">统一规格/添加数据图片</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n127"><a class="md-toc-inner" href="#合并分段">合并分段</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n131"><a class="md-toc-inner" href="#小注">小注</a></span></p></div><p>&nbsp;</p><h2><a name="所用软件插件及预备工作" class="md-header-anchor"></a><span>所用软件/插件及预备工作</span></h2><h4><a name="megui" class="md-header-anchor"></a><span>MeGUI</span></h4><p><span>本文采用的是MeGUI 2913（32-bit），直接在SourceForge.net找到发布的该版本下载即可，解压后部分外部插件需要手动添加，如下：</span></p><ol start='' ><li><p><span>NeroACC编解码器，应随本文档一同保存在云端。</span></p><p><a href='https://skydrive.live.com/redir?resid=5C33D67318A670A!135&amp;authkey=!AFCyZ9pct0G-n2I' target='_blank' class='url'>https://skydrive.live.com/redir?resid=5C33D67318A670A!135&authkey=!AFCyZ9pct0G-n2I</a></p><p><span>下载后请解压并打开MeGUI，Options-External Programs。点选Enable NeroAac Enc，然后在Location中指定NeroACC编解码器所在的路径</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717113032758.png" alt="image-20200717113032758" style="zoom:80%;" /></p><p>&nbsp;</p></li><li><p><span>FFmpeg的32位编解码器，应随本文档一同保存在云端</span></p><p><a href='https://web.archive.org/web/20200531063902if_/https://files.videohelp.com/u/223002/ffms2_89bd1e1.7z' target='_blank' class='url'>https://web.archive.org/web/20200531063902if_/https://files.videohelp.com/u/223002/ffms2_89bd1e1.7z</a></p><p>&nbsp;</p></li></ol><h4><a name="avisynth" class="md-header-anchor"></a><span>AviSynth</span></h4><p><span>直接通过SourceForge.net下载安装即可。</span></p><p><span>在AviSynth这一流服务器中，操作者需要通过撰写脚本来操控达成最终效果。其实AviSynth是在数年前就开始被活跃使用的工具，因此国外论坛存在充足的Q&amp;A，请善用网络解决前人已解决的问题，包括询问错误信息，添加函数和插件以实现效果。</span></p><h4><a name="solveigmm-video-splitter" class="md-header-anchor"></a><span>SolveigMM Video Splitter</span></h4><p><span>百度网盘：</span><a href='https://pan.baidu.com/s/1FrFit6yPLf14VCsMpdYIsg' target='_blank' class='url'>https://pan.baidu.com/s/1FrFit6yPLf14VCsMpdYIsg</a><span> 提取码: 2333</span></p><p><span>因可以</span><strong><span>不进行重编码</span></strong><span>，流畅地完成</span><strong><span>无损剪切</span></strong><span>，</span><strong><span>无损合并</span></strong><span>的任务而被采用。云端应保存一个可用版本。实际上可以</span><strong><span>不进行重编码</span></strong><span>，流畅简洁地执行</span><strong><span>无损剪切，无损合并</span></strong><span>的程序/软件/命令行都可以在此使用。在自动化的MAF-101工作文档中或将以脚本形式呈现。</span></p><p>&nbsp;</p><h2><a name="流程" class="md-header-anchor"></a><span>流程</span></h2><h4><a name="流程概览" class="md-header-anchor"></a><span>流程概览</span></h4><p><img src="C:\Users\Mash K\Documents\markdown documents\SynthesizerV 周刊\synth_画板 1.png" referrerpolicy="no-referrer" alt="synth_画板 1"></p><h4><a name="剪切片段" class="md-header-anchor"></a><span>剪切片段</span></h4><ol start='' ><li><p><span>在满足播放数据，爬虫自动取得PV后。</span><code>若连爬虫也无法运作，请参阅工作文档PX-099，通过b站插件取得视频。</code><span>从服务器端下载视频，根据b站相关码率规格，视压制方式，PV大小大致在40MB（按2000kbps码率压制的3分钟720P视频）至200MB（按6000kbps码率压制的5分钟1080P+视频）左右。</span></p><p><span>但如果服务器端储存的是已分段的片段（20~30秒时长），请跳转</span><strong><span>统一规格/添加数据图片</span></strong><span>。</span></p></li><li><p><span>首先要将每个PV中的选段裁剪出来。打开SolveigMM Video Splitter，将需要处理的PV都拖入左侧的媒体库中，也可以点击加号导入PV。</span></p><p><span>2.1 这里若提示</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716135459682.png" alt="image-20200716135459682" style="zoom:80%;" /></p><p><span>这是因为服务器端储存的PV资源，其音频轨道没有统一采样率。具体而言，有些PV音轨为44100Hz采样率，而有些为48000Hz。此时软件会只导入所有</span><strong><span>与第一个导入视频的音频采样率相同的文件</span></strong><span>，而忽视其他文件。在本次演示中，第一个导入的PV音轨采样率为48000Hz，故只导入了音轨为48000Hz采样率的视频。</span></p><p><strong><span>此软件可以接受不同帧率的视频混合，这也是我们采用它的原因之一</span></strong></p><p><span>当音轨采样率不一致时，暂时不必处理，只用将含有48000Hz和44100Hz的PV各自</span><strong><span>分两个批次导入软件以及裁剪</span></strong><span>即可。</span></p></li><li><p><span>将视频拖入轨道，用鼠标定位可以裁剪的位置（点击预览窗口的播放按钮可以预览效果），然后点击最下方的添加标记点</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717020402863.png" referrerpolicy="no-referrer" alt="image-20200717020402863"></p><p><span>确定好两个时间点后，将两个时间点以外的内容按下</span><strong><span>切除所选区段</span></strong><span>标记删除</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717020650048.png" referrerpolicy="no-referrer" alt="image-20200717020650048"></p><p><span>此时可以按下方的保存导出裁剪好的片段了。软件会</span><strong><span>不进行重编码</span></strong><span>，直接导出视频原始信息中的片段，因此不会造成任何信息损失，也几乎不需要什么计算负荷，</span><strong><span>可以在瞬间完成</span></strong><span>。</span></p><p><span>这个方法可以逐一裁剪每个PV中的片段，也可以将所有pv放在同一时间线上，逐项裁切，并最终分别导出，只需在导出时确认</span><strong><span>分别保存保留区段</span></strong><span>这个选框。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717021113672.png" alt="image-20200717021113672" style="zoom:80%;" /></p><p><span>当所有PV的分段都裁切完成时，进入下一阶段。</span></p></li></ol><h4><a name="统一规格添加数据图片" class="md-header-anchor"></a><span>统一规格/添加数据图片</span></h4><ol start='' ><li><p><span>视频之间必须满足</span><strong><span>分辨率相同，音频采样率相同</span></strong><span>这两个条件。我们按照</span><strong><span>1080p分辨率</span></strong><span>和</span><strong><span>48000Hz音频码率</span></strong><span>统一。</span></p><p><span>我们打开MeGUI。这是我们第一次讲解这个软件，以及它使用的AviSynth这一帧服务器。</span></p><p><span>AviSynth的核心是对其脚本文件.avs的编写。本文档准备了一个模板如下：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="AviSynth" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="avisynth"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">LoadPlugin("C:\Users\Mash K\Downloads\ffms2_89bd1e1\x86\ffms2.dll") #加载ffmpeg插件以打开视频</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">LoadPlugin("D:\MeGUI-2913-32 (2)\tools\avs\plugins\ImageSeq.dll") #加载图片插件</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#以下是对音频添加指数淡出使用的函数（其实存在冗余，可以简化，但既然不是服务器端版本，暂且搁置，基本不影响效率）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">function Fade_exp(clip C, int fade_start, int fade_end, </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">\ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bool "vfade", bool "afade", int "color", float "attack")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  Assert(IsClip(C) &amp;&amp; HasVideo(C) &amp;&amp; HasAudio(C),</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp; "Fade_exp: source must have both video and audio")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  Assert(fade_start&gt;8,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp; "Fade_exp: 'fade_start' must be &gt; 8")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  Assert(fade_end&gt;(fade_start+8),</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp; "Fade_exp: 'fade_end' must be &gt; ('fade_start' + 8)")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  Assert(fade_end&lt;C.FrameCount,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp; "Fade_exp: 'fade_end' must be &lt; C.FrameCount")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  vfade = Default(vfade, true)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  afade = Default(afade, true)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  color = Default(color, 1)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  attak = Default(attack, 0.5)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  dur  = (fade_end - fade_start)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  dur4 = dur / 4</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  ## A: "attack" (fast initial falloff)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  A = C.Trim(fade_start, end=fade_start+dur4)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp;  .FadeOut0(dur4, color=color) </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ + BlankClip(C, length=dur-dur4, color=color)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  ## D: "decay" (linear)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  D = C.Trim(fade_start, end=fade_end)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp;  .FadeOut0(dur, color=color)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  attak = Float(Min(Max(0.0, attak), 0.75))</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  F = Merge(D, A, attak).AudioDub(MixAudio(D, A, 1.0-attak, attak))</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  R = C.Trim(0, fade_start-1) </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ + F </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ + BlankClip(C, color=color).Trim(fade_end+1, 0)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  return (vfade &amp;&amp; afade) ? R</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ : (vfade) ? R.AudioDub(C)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ : (afade) ? C.AudioDub(R)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  \ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : C</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">img=ImageSource("D:\视频剪辑考核\模板\11.png",pixel_type="rgb32").LanczosResize(1920,1080)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#添加图片源（内部命名为img），设置色彩空间为RGB32（使用透明通道）,将图片大小设置为1920×1080</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">video=FFVideosource("D:\视频剪辑考核\视频素材\11【赤羽原创曲】玩偶剧场与致幻剂 - 1.pv__0001.mp4").ConvertToRGB32().Lanczosresize(1920,1080).Layer(img,"add",255,0,0).ConvertToYV12()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#用ffmpeg添加视频源，内部命名为video，转化色彩空间至RGB32(以准备图片的透明通道)，将视频缩放至1080P(统一视频分辨率),令图片img，叠加（add）到视频上方，不透明度为255（完全不透明），位置为0,0（图片最左上角的点定在视频最左上角），最后将色彩空间转化回YUV12，与b站标准一致</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">audio=FFAudioSource("D:\视频剪辑考核\视频素材\11【赤羽原创曲】玩偶剧场与致幻剂 - 1.pv__0001.mp4")</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#用ffmpeg添加音频源（直接从视频源提取），内部命名为audio</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">final=AudioDub(video,audio).Fade_exp(350, 387, vfade=false)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#将音频和视频混流后，为音频添加自350帧至387帧的指数淡出效果，视频淡出效果设置为否</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">return final</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">#导出</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 1206px;"></div><div class="CodeMirror-gutters" style="display: none; height: 1206px;"></div></div></div></pre><p><span>当操作者使用本脚本模板时，请新建一个.txt文件，打开并将模板复制到其中，然后依照你的插件、素材存放路径对模板做出如下修改：</span></p><ol start='' ><li><p><span>将第一行ffmpeg插件的路径设为你设备中的对应路径。</span></p></li><li><p><span>将第二行图片插件ImageSeq.dll的路径设为你设备中: MeGUI根目录\tools\avs\plugins\ImageSeq.dll这一路径。</span></p></li><li><p><span>将ffmpeg添加的视频路径和音频路径都改为你设备中的视频路径，如果视频长宽比为16:9但并非1080p，这一步</span><code>Lanczosresize(1920,1080)</code><span>将完成到1080P的转化，如果视频长宽比并非16:9，请在ConvertToRGB32().之后，Lanczosresize(1920,1080).之前添加AddBorders()函数。</span><code>注意函数之间有小数点</code></p><p><span>AddBorders函数规格如下：</span></p><p><span>AddBorders(左侧添加黑边宽度，上侧添加黑边宽度，右侧添加黑边宽度，下侧添加黑边宽度).</span></p><p><span>目标是在添加后长宽比变为16:9，具体而言先将视频长度乘以9/16，算出目标宽度。然后将差值平分到视频上下两侧，即</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n79" cid="n79" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-1275-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="66.131ex" height="2.872ex" viewBox="0 -889.4 28472.9 1236.5" role="img" focusable="false" style="vertical-align: -0.806ex; max-width: 100%;"><defs><path stroke-width="0" id="E1306-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E1306-MJMAIN-39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path stroke-width="0" id="E1306-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path stroke-width="0" id="E1306-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E1306-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path stroke-width="0" id="E1306-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="0" id="E1306-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E1306-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">上</text><g transform="translate(788,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">侧</text></g><g transform="translate(1565,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">添</text></g><g transform="translate(2354,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">加</text></g><g transform="translate(3130,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">黑</text></g><g transform="translate(3907,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">边</text></g><g transform="translate(4695,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(5472,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1306-MJMAIN-3D" x="6538" y="0"></use><g transform="translate(7594,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">下</text></g><g transform="translate(8371,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">侧</text></g><g transform="translate(9147,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">添</text></g><g transform="translate(9936,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">加</text></g><g transform="translate(10712,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">黑</text></g><g transform="translate(11489,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">边</text></g><g transform="translate(12278,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(13054,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1306-MJMAIN-3D" x="14121" y="0"></use><g transform="translate(15177,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">（</text></g><use xlink:href="#E1306-MJMAIN-39" x="15953" y="0"></use><use xlink:href="#E1306-MJMAIN-2F" x="16453" y="0"></use><g transform="translate(16953,0)"><use xlink:href="#E1306-MJMAIN-31"></use><use xlink:href="#E1306-MJMAIN-36" x="500" y="0"></use></g><use xlink:href="#E1306-MJMAIN-D7" x="18175" y="0"></use><g transform="translate(19175,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(19964,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(20753,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">长</text></g><g transform="translate(21542,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1306-MJMAIN-2212" x="22553" y="0"></use><g transform="translate(23553,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(24342,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(25131,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(25907,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><g transform="translate(26696,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">）</text></g><use xlink:href="#E1306-MJMAIN-2F" x="27472" y="0"></use><use xlink:href="#E1306-MJMAIN-32" x="27972" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-1275">上侧添加黑边宽度=下侧添加黑边宽度=（9/16×视频长度-视频宽度）/2</script></div></div><p><span>一般而言，只有上个年代的视频（复古风？）才有长宽比小于16:9的，此时不得不计算左右侧要添加的黑边宽度（苦笑）</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n81" cid="n81" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-1276-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="66.131ex" height="2.872ex" viewBox="0 -889.4 28472.9 1236.5" role="img" focusable="false" style="vertical-align: -0.806ex; max-width: 100%;"><defs><path stroke-width="0" id="E1307-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E1307-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E1307-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path stroke-width="0" id="E1307-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path stroke-width="0" id="E1307-MJMAIN-39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path stroke-width="0" id="E1307-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="0" id="E1307-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E1307-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">左</text><g transform="translate(788,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">侧</text></g><g transform="translate(1565,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">添</text></g><g transform="translate(2354,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">加</text></g><g transform="translate(3130,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">黑</text></g><g transform="translate(3907,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">边</text></g><g transform="translate(4695,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(5472,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1307-MJMAIN-3D" x="6538" y="0"></use><g transform="translate(7594,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">右</text></g><g transform="translate(8371,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">侧</text></g><g transform="translate(9147,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">添</text></g><g transform="translate(9936,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">加</text></g><g transform="translate(10712,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">黑</text></g><g transform="translate(11489,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">边</text></g><g transform="translate(12278,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(13054,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1307-MJMAIN-3D" x="14121" y="0"></use><g transform="translate(15177,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">（</text></g><g transform="translate(15953,0)"><use xlink:href="#E1307-MJMAIN-31"></use><use xlink:href="#E1307-MJMAIN-36" x="500" y="0"></use></g><use xlink:href="#E1307-MJMAIN-2F" x="16953" y="0"></use><use xlink:href="#E1307-MJMAIN-39" x="17453" y="0"></use><use xlink:href="#E1307-MJMAIN-D7" x="18175" y="0"></use><g transform="translate(19175,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(19964,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(20753,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">宽</text></g><g transform="translate(21530,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><use xlink:href="#E1307-MJMAIN-2212" x="22541" y="0"></use><g transform="translate(23541,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(24330,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(25118,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">长</text></g><g transform="translate(25907,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">度</text></g><g transform="translate(26696,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">）</text></g><use xlink:href="#E1307-MJMAIN-2F" x="27472" y="0"></use><use xlink:href="#E1307-MJMAIN-32" x="27972" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-1276">左侧添加黑边宽度=右侧添加黑边宽度=（16/9×视频宽度-视频长度）/2</script></div></div><p><span>完成函数赋值后，</span><strong><span>视频分辨率已统一</span></strong></p></li><li><p><span>关于音频的指数淡出效果设置的起始和终止，请按照如下式子计算、设置。</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n85" cid="n85" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-1277-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.165ex" height="2.872ex" viewBox="0 -889.4 11695.8 1236.5" role="img" focusable="false" style="vertical-align: -0.806ex; max-width: 100%;"><defs><path stroke-width="0" id="E1308-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E1308-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E1308-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">淡</text><g transform="translate(788,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">出</text></g><g transform="translate(1565,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">的</text></g><g transform="translate(2341,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">终</text></g><g transform="translate(3130,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">止</text></g><g transform="translate(3907,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">帧</text></g><use xlink:href="#E1308-MJMAIN-3D" x="4973" y="0"></use><g transform="translate(6029,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(6818,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(7606,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">总</text></g><g transform="translate(8395,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">帧</text></g><g transform="translate(9184,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">数</text></g><use xlink:href="#E1308-MJMAIN-2212" x="10195" y="0"></use><use xlink:href="#E1308-MJMAIN-31" x="11195" y="0"></use></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-1277">淡出的终止帧=视频总帧数-1</script></div></div><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n86" cid="n86" mdtype="math_block"><div class="md-rawblock-container md-math-container" tabindex="-1"><div class="MathJax_SVG_Display" style="text-align: center;"><span class="MathJax_SVG" id="MathJax-Element-1278-Frame" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="50.074ex" height="2.872ex" viewBox="0 -889.4 21559.6 1236.5" role="img" focusable="false" style="vertical-align: -0.806ex; max-width: 100%;"><defs><path stroke-width="0" id="E1309-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E1309-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="0" id="E1309-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path><path stroke-width="0" id="E1309-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E1309-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E1309-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">淡</text><g transform="translate(788,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">出</text></g><g transform="translate(1565,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">的</text></g><g transform="translate(2341,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">起</text></g><g transform="translate(3130,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">始</text></g><g transform="translate(3919,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">帧</text></g><use xlink:href="#E1309-MJMAIN-3D" x="4985" y="0"></use><g transform="translate(6041,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(6830,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(7619,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">总</text></g><g transform="translate(8408,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">帧</text></g><g transform="translate(9196,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">数</text></g><use xlink:href="#E1309-MJMAIN-2212" x="10207" y="0"></use><g transform="translate(11208,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">视</text></g><g transform="translate(11996,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">频</text></g><g transform="translate(12785,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">帧</text></g><g transform="translate(13574,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">率</text></g><use xlink:href="#E1309-MJMAIN-D7" x="14585" y="0"></use><g transform="translate(15585,0)"><use xlink:href="#E1309-MJMAIN-31"></use><use xlink:href="#E1309-MJMAIN-2E" x="500" y="0"></use><use xlink:href="#E1309-MJMAIN-35" x="778" y="0"></use></g><g transform="translate(16863,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">（</text></g><g transform="translate(17640,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">向</text></g><g transform="translate(18416,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">上</text></g><g transform="translate(19205,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">取</text></g><g transform="translate(19994,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">整</text></g><g transform="translate(20783,0)"><text font-family="STIXGeneral, 'PingFang SC', serif" stroke="none" transform="scale(49.3) matrix(1 0 0 -1 0 0)">）</text></g></g></svg></span></div><script type="math/tex; mode=display" id="MathJax-Element-1278">淡出的起始帧=视频总帧数-视频帧率×1.5（向上取整）</script></div></div><p><span>视频总帧数可以通过ffmpeg取得，有兴趣的读者也可以通过opencv取得，在PX-099中我们使用的小丸工具箱也可以查看，但更简便的做法是用视频时长乘以帧率，然后取近似值。本例中视频长度为15s520ms，帧率为25fps，故视频总帧数为15.52s×25f/s=388。终止帧为387，而起始帧为350。</span></p></li><li><p><span>保存，关闭文本文档，然后将其后缀更改为.avs</span></p><p><span>此时已完成脚本文件的准备。</span></p><p><span>打开MeGUI，点击省略号导入AviSynth脚本</span></p></li></ol><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716175423240.png" alt="image-20200716175423240" style="zoom:80%;" /></p><p><span>如果不报错，并弹出视频的预览窗口，说明你的脚本可用，此时你可以通过下方进度条预览效果。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716175825769.png" referrerpolicy="no-referrer" alt="image-20200716175825769"></p><p><span>如果某些插件未能加载，可能导致软件无法解读你的命令，请再次检查插件目录是否填写正确，软件是否具备权限读取该目录。</span></p><p><span>如果标点符号未完全按照规范，可能导致软件报错，请按照指示修改对应符号。</span></p><p>&nbsp;</p><p><span>当你的脚本通过后，关闭预览窗口，点击Config</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716180202073.png" alt="image-20200716180202073" style="zoom:80%;" /></p><p><span>将Encoding Mode（编码模式）中的Targeting quality（控制质量），切换为Targeting quality（控制文件大小）</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716180549194.png" alt="image-20200716180549194" style="zoom: 80%;" /></p><p><span>设法查看视频原本的视频比特率（可在属性-详细信息里看到），将之填入Bitrate中，然后在Tuning中选择Animation（因为PV大多内容主要是动画制作，如果是实景拍摄或其他特殊情况，可以考虑切换为Film，由读者自行探索决定）</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200716180800089.png" alt="image-20200716180800089" style="zoom:80%;" /></p><p><span>完成后点击OK退出，将File format设为MP4</span></p><p>&nbsp;</p></li><li><p><span>以上均是对视频处理进行设置，我们在此对音频处理进行。在导入的AviSynth脚本本身无误后，音频应当已自动装填到下方的轨道中，选择Nero AAC，然后点击其右侧的Config</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717101936054.png" alt="image-20200717101936054" style="zoom:80%;" /></p></li><li><p><span>将参数设置成本页所示，即：</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717031911211.png" alt="image-20200717031911211" style="zoom:80%;" /></p><p><span>Preferred Decoder（优先解码器）选择，NicAudio</span></p><p><span>Sample Rate（采样率）选择，Change to 48000Hz</span></p><p><span>点选Normalize Peaks，默认值为100（音频峰值标准化）</span></p><p><span>在下方的NeroDigital AAC Options选择Constant Bitrate（平均比特率），然后拖动到320kbits/s。</span></p><p><span>此时完成设置，点击OK返回。</span></p><p><strong><span>音频规格已统一</span></strong></p></li><li><p><span>此时我们已完成对视频和音频参数的设置，我们点击下方的AutoEncode。</span></p><p><span>然后选择No Target Size，来保持我们原本的设置。</span></p><p><span>点击Queue（队列），此时开始导出处理结果。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717102932092.png" alt="image-20200717102932092" style="zoom:80%;" /></p><p><span>在MeGUI处理视频/音频的时候，你可以继续修改脚本，然后加入新的视频任务进入队列，MeGUI会把它堆叠到页面栏Queue中，逐项处理。你也许需要每一次都修改Name of Output的命名，以免发生重叠。</span></p><p><span>如果你的电脑没有执行其他任务，你可以调高处理的优先级，加速处理结果。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200717103343165.png" alt="image-20200717103343165" style="zoom:80%;" /></p><p><span>此时我们得到了所有处理好的分段，进入下一阶段。</span></p></li></ol><h4><a name="合并分段" class="md-header-anchor"></a><span>合并分段</span></h4><p><span>这是最简单的阶段，只需将分段导入之前分段所用的软件SolveigMM Video Splitter中，然后按照顺序排列，合并导出，就可以不进行重编码，无损获得成品。</span></p><p><span>软件面对不同帧率的视频时也会自动按照</span><strong><span>可变帧率</span></strong><span>保存，故视频可以在不同时间出现24帧、25帧乃至30帧的帧速率。而b站的1080p+支持可变帧率，故本软件符合我们的需求。</span></p><p>&nbsp;</p><h3><a name="小注" class="md-header-anchor"></a><span>小注</span></h3><p><span>根据Church-Turing论题，“任何在算法上可（被人类）计算的问题同样可由图灵机（计算机）计算”。本文的完成，也即宣告了取代SynthesizerV周刊成员主要的视频工作的MAF-101工作文档的可能性成立。本文的所有明确的指示或将在MAF-101中被编程，剪切这一工作也预计将由人工预览视频并提交时间节点代替，由云端代为剪辑、编码（话说我们有这么有钱么......</span><del><span>果然没钱咋做自动化</span></del><span>）。</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
