@@ -1,0 +1,632 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>SynthesizerV周刊工作文档</title><link href='https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' /><link href='https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+@include-when-export url(https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext);
+@include-when-export url(https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext);
+
+:root {
+	--control-text-color: #777;
+}
+
+/**
+ * forked from pixyll.com
+ * MIT license
+ */
+
+h1,
+.h1,
+.f1 {
+	font-size: 2rem;
+	line-height: 2.5rem;
+}
+h2,
+.h2,
+.f2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+h3,
+.h3,
+.f3 {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul,
+pre[cid],
+div[cid],
+#typora-source {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+}
+
+h4 {
+	font-size: 1.13rem;
+}
+/*
+ Pixyll
+ A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.
+ Best served with BASSCSS (http://jxnblk.github.io/basscss)
+ Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander MIT License http://opensource.org/licenses/MIT
+
+*/
+
+body {
+	font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", "STSong", Serif;
+	line-height: 1.5rem;
+	font-weight: 400;
+}
+
+#write {
+	max-width: 914px;
+	color: #333;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media only screen and (min-width: 1700px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+}
+body {
+	font-size: 1.5rem;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.ty-table-edit {
+	background: #ededed;
+}
+
+table {
+	width: 100%;
+	font-size: 1.125rem;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+	padding: 12px;
+	line-height: 1.2;
+	vertical-align: top;
+	border-top: 1px solid #333;
+}
+table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #333;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+table > tbody + tbody {
+	border-top: 2px solid #333;
+}
+p {
+	font-weight: 300;
+	line-height: 1.5;
+}
+abbr {
+	border-bottom: 1px black dotted;
+	cursor: help;
+}
+pre,
+code {
+	font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code,
+.md-fences  {
+	color: #7a7a7a;
+}
+
+.md-fences {
+	padding: 1.125em;
+	margin-bottom: 0.88em;
+	font-size: 1rem;
+	border: 1px solid #7a7a7a;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+blockquote {
+	padding: 1.33em;
+	font-style: italic;
+	border-left: 5px solid #7a7a7a;
+	color: #555;
+}
+blockquote em {
+	color: #000;
+}
+blockquote footer {
+	font-size: .85rem;
+	font-style: normal;
+	background-color: #fff;
+	color: #7a7a7a;
+	border-color: transparent;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: "Lato", 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 1em 0 0.5em;
+}
+@media screen and (min-width: 48em) {
+	.h1,
+	h1 {
+		font-size: 3.250rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.298rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.625rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+	#write>h4.md-focus:before,
+	#write>h5.md-focus:before,
+	#write>h6.md-focus:before{
+		top: 1px;
+	}
+	.p,
+	p,
+	li {
+		font-size: 1.25rem;
+		line-height: 1.8;
+	}
+	table {
+		font-size: 1.25rem;
+	}
+}
+@media (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+}
+@media screen and (min-width: 64em) {
+	.h1,
+	h1 {
+		font-size: 4.498rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.29rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.9rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.591rem;
+	}
+	#write>h4.md-focus:before{
+		top:4px;
+	}
+}
+a {
+	color: #463F5C;
+	text-decoration: underline;
+}
+
+#write {
+	padding-top: 2rem;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	border: 0px;
+
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+
+	margin-left: -30px;
+	margin-bottom: 2em;
+	margin-top: -2010px;
+	padding-top: 2000px;
+	padding-bottom: 10px;
+	line-height: 1.5em;
+	color: #7a7a7a;
+	background-color: #fafafa;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	clear: both;
+	padding-left: 0;
+	font-size:1.125rem;
+}
+.md-image>.md-meta {
+	color: #463F5C
+}
+.footnotes {
+	font-size:1.1rem;
+}
+.md-tag {
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+}
+.code-tooltip {
+	background: white;
+}
+.code-tooltip-content {
+	font-size: 1.1rem;
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item {
+	padding-left:34px;
+}
+
+.md-task-list-item > input{
+	width: 1.25rem;
+	height: 1.25rem;
+	display: block;
+	-webkit-appearance: initial;
+	top: -0.2rem;
+	margin-left: -1.6em;
+	margin-top: calc(1rem - 7px);
+	border: none;
+}
+
+.md-task-list-item > input:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid #555;
+	border-radius: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #333;
+	border-width: 2px;
+	display:inline-block;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.4375rem;
+	left: 0.28125rem;
+	width: 0.9375rem;
+	height: 0.5rem;
+	border: 3px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+.md-tag {
+	color:inherit;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+#typora-sidebar {
+	font-size:1rem !important;
+}
+
+.html-for-mac #typora-sidebar {
+	background-color:white;
+}
+
+.outline-content li, .outline-content ul {
+	font-size:1rem !important;
+}
+
+.outline-title {
+	line-height: inherit;
+	margin-top: 10px;
+}
+
+.outline-expander {
+	width: 18px;
+}
+
+.outline-expander:before {
+ 	content: "+";
+	font-family: inherit;
+	color: rgb(108, 108, 108); 
+  	font-size: 1.5rem;
+ 	top: 0.1rem;
+}
+
+.outline-expander:hover:before {
+	content: "+";
+}
+
+.outline-item-open>.outline-item>.outline-expander:before{
+	content: "-";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.os-windows #typora-source {
+	font-family: inherit;
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.md-diagram-panel {
+	margin-top: 24px;
+	margin-left: -1.2em;
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -3.4em;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="工作文档" class="md-header-anchor"></a><span>工作文档</span></h1><p><span>作者：A_LY_Z（bilibili uid:8037517)</span></p><p><span>本文档基于Markdown的GFM语法创建，以.md格式保存。本文档涉及大略的工作流程，以及所必需的软件，意在给后人提供参考。</span></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#工作文档">工作文档</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n5"><a class="md-toc-inner" href="#所用软件插件">所用软件/插件</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n8"><a class="md-toc-inner" href="#基于chromium内核的浏览器">基于Chromium内核的浏览器</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n10"><a class="md-toc-inner" href="#tampermonkey插件-bilibili-evolved">Tampermonkey插件-Bilibili Evolved</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n13"><a class="md-toc-inner" href="#小丸工具箱">小丸工具箱</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n15"><a class="md-toc-inner" href="#adobe-premiere-pro-cc-2014或以上版本">Adobe Premiere Pro CC 2014或以上版本</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n23"><a class="md-toc-inner" href="#流程概述">流程概述</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n38"><a class="md-toc-inner" href="#部分流程详述">部分流程详述</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n100"><a class="md-toc-inner" href="#小注">小注</a></span></p></div><h2><a name="所用软件插件" class="md-header-anchor"></a><span>所用软件/插件</span></h2><h3><a name="基于chromium内核的浏览器" class="md-header-anchor"></a><span>基于Chromium内核的浏览器</span></h3><p><span>上网基础。bilibili客户端通常可以代替此方法并直接离线视频——根目录寻找对应av/BV号，更改后缀为.flv格式即可得到。但此种方法对浏览器用户来说显得繁琐。</span></p><h4><a name="tampermonkey插件-bilibili-evolved" class="md-header-anchor"></a><span>Tampermonkey插件-Bilibili Evolved</span></h4><p><span>通过安装Tampermonkey插件——Bilibili Evolved脚本可直接获取视频，清晰度上限目前为1080p+或1080p60（对4k格式暂不支持），受大会员条件限制，音频保持该分辨率下的原音频质量（最高为320kbps），速度可观。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705182532955.png" alt="image-20200705182532955" style="zoom:40%;" /></p><h3><a name="小丸工具箱" class="md-header-anchor"></a><span>小丸工具箱</span></h3><p><span>本文的核心工具之一，至少涉及两个流程。由于其仅为GUI+部分改进，存在对应的开源编/解码器，故即便停止支持，仍能保存对应的编解码器，只是届时无法使用GUI，可以寻找其他开源GUI，如MeGUI。或是直接调用系统命令行运行编解码器，存在门槛。</span></p><h3><a name="adobe-premiere-pro-cc-2014或以上版本" class="md-header-anchor"></a><span>Adobe Premiere Pro CC 2014或以上版本</span></h3><p><span>本文另一核心工具，暂时稳定，也存在开源免费的替代品，如DaVinci Resolve 16，Lightworks，甚至Blender亦可执行剪辑工作。</span></p><p><span>并非核心的软件/辅助技巧</span></p><ol start='' ><li><span>Potplayer播放器——快速检验下载视频的各项关键参数，如视频码率、音频码率、压缩方式（小丸工具箱已具备此功能）</span></li><li><span>在b站视频右键选项中可查看部分参数（可能不准确，建议下载后查看）</span></li></ol><h2><a name="流程概述" class="md-header-anchor"></a><span>流程概述</span></h2><ol start='' ><li><span>通过bilibili客户端或bilibili envolved脚本获取视频，应尽可能追求高分辨率、高视频码率、高音频码率作为素材基础；</span></li><li><span>通过小丸工具箱将取得的.flv格式视频封装方式改为受Premiere及大多数软件支持的.mov格式；</span></li><li><span>导入Premiere，进行相关剪辑</span></li><li><span>Premiere导出一压视频，平均码率为10000kbps，峰值码率为12000kbps</span></li><li><span>导入小丸工具箱，进行二压视频（对内部校对审核专用版本，简称校审一版，而后版号逐增），分辨率为720p，视频平均码率为2000kbps，音频平均码率最高为320kbps。此版本用于内部校对审核。</span></li></ol><p><span>若校审一版通过，将一压视频导入小丸工具箱，进行终压，平均码率些微低于b站上限6000kbps，如5900kbps，音频码率为320kbps。压缩完毕即可上传b站。</span></p><p><span>若未通过，删除一压视频，于premiere修改后重新导出，以相同规格进行二压视频，版本号加一，重新交由内部审核，重复本流程直到通过。</span></p><h2><a name="部分流程详述" class="md-header-anchor"></a><span>部分流程详述</span></h2><ol start='2' ><li><p><span>小丸工具箱</span></p><p><span>将.flv格式文件拖入封装-封装转换框内，在输出格式中切换为.mov，点击封装即可无损获得.mov格式的源文件，可以导入大多数剪辑软件。由于这一步（封装转换）不涉及视频重编码，速度极快（理论上不需要计算速度），且不对文件造成任何损失。</span></p></li><li><p><span>Premiere</span></p><p><span>新建工程并导入mov格式后。在项目栏右键创建【序列】，而非直接将视频拖入时间线中。选择预设AVCHD 1080p24，选择24帧的缘故暂且后置。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705192512529.png" referrerpolicy="no-referrer" alt="image-20200705192512529"></p><p><span>![image-20200705192550711](C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705192550711.png</span></p><p><span>打开【轨道】，我们将视频轨道改为2（实现基本的视频效果仅需要两个轨道），音频轨道仅仅在第一轨道最后打勾，以此打开第一个轨道，并在其余轨道之前打勾，然后按下减号键，将这些多余的轨道删去。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705191355138.png" referrerpolicy="no-referrer" alt="image-20200705191355138"></p><p><span>我们可以保存预设，并为之命名“SythesizerV周刊模板”，以在下次使用，省去重复工作。</span></p><p><span>确定创建序列后，我们将视频拖入轨道。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705192753541.png" alt="image-20200705192753541" style="zoom:70%;" /></p><p><span>咦？！怎么提示剪辑不匹配？！</span></p><p><span>原来是取得的视频源本身之间帧率就各自不同，</span><strong><span>这取决于视频作者的个人喜好</span></strong><span>，无法确定。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705193103682.png" alt="image-20200705193103682" style="zoom:70%;" /></p><p><span>其实音频采样率乃至视频分辨率也有所分歧。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705193156897.png" alt="image-20200705193156897" style="zoom:70%;" /></p><p><span>· 当视频帧率不一时，选择帧率最低的视频导出，有时被认为是最小损耗的，因为原理上只涉及对高帧率视频进行抽帧（Premiere实际上仍会运用这些被抽帧的信息再次合成新视频，不会放任它白白流失）。而提高低帧率视频的帧数则涉及复杂的算法，效果参差不齐，可靠性较差。——在有专门的补帧软件的情况下还使用Premiere进行补帧并不是高效的做法。故此前文选择24fps，可以说是b站现行最低的帧率，但结果却最稳定。</span></p><p><span>· 当视频分辨率不一时，统一将超出的部分原比例拉伸至对齐。具体做法如下（以上图最后的视频为例）：</span></p><p><span>首先用宽除以长，</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="38.845ex" height="2.587ex" viewBox="0 -801 16724.7 1113.7" role="img" focusable="false" style="vertical-align: -0.726ex;"><defs><path stroke-width="0" id="E18-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E18-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path><path stroke-width="0" id="E18-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="0" id="E18-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path stroke-width="0" id="E18-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E18-MJMAIN-38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path stroke-width="0" id="E18-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="0" id="E18-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E18-MJMAIN-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path stroke-width="0" id="E18-MJMAIN-3E" d="M84 520Q84 528 88 533T96 539L99 540Q106 540 253 471T544 334L687 265Q694 260 694 250T687 235Q685 233 395 96L107 -40H101Q83 -38 83 -20Q83 -19 83 -17Q82 -10 98 -1Q117 9 248 71Q326 108 378 132L626 250L378 368Q90 504 86 509Q84 513 84 520Z"></path><path stroke-width="0" id="E18-MJMAIN-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path stroke-width="0" id="E18-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path stroke-width="0" id="E18-MJMAIN-39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E18-MJMAIN-32"></use><use xlink:href="#E18-MJMAIN-35" x="500" y="0"></use><use xlink:href="#E18-MJMAIN-32" x="1000" y="0"></use><use xlink:href="#E18-MJMAIN-30" x="1500" y="0"></use><use xlink:href="#E18-MJMAIN-2F" x="2000" y="0"></use><g transform="translate(2500,0)"><use xlink:href="#E18-MJMAIN-31"></use><use xlink:href="#E18-MJMAIN-30" x="500" y="0"></use><use xlink:href="#E18-MJMAIN-38" x="1000" y="0"></use><use xlink:href="#E18-MJMAIN-30" x="1500" y="0"></use></g><use xlink:href="#E18-MJMAIN-3D" x="4777" y="0"></use><g transform="translate(5833,0)"><use xlink:href="#E18-MJMAIN-32"></use><use xlink:href="#E18-MJMAIN-2E" x="500" y="0"></use><use xlink:href="#E18-MJMAIN-33" x="778" y="0"></use><use xlink:href="#E18-MJMAIN-33" x="1278" y="0"></use><use xlink:href="#E18-MJMAIN-33" x="1778" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2278" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2556" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2834" y="0"></use></g><use xlink:href="#E18-MJMAIN-3E" x="9223" y="0"></use><g transform="translate(10279,0)"><use xlink:href="#E18-MJMAIN-31"></use><use xlink:href="#E18-MJMAIN-2E" x="500" y="0"></use><use xlink:href="#E18-MJMAIN-37" x="778" y="0"></use><use xlink:href="#E18-MJMAIN-37" x="1278" y="0"></use><use xlink:href="#E18-MJMAIN-37" x="1778" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2278" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2556" y="0"></use><use xlink:href="#E18-MJMAIN-2E" x="2834" y="0"></use></g><use xlink:href="#E18-MJMAIN-3D" x="13668" y="0"></use><g transform="translate(14724,0)"><use xlink:href="#E18-MJMAIN-31"></use><use xlink:href="#E18-MJMAIN-36" x="500" y="0"></use></g><use xlink:href="#E18-MJMAIN-2F" x="15724" y="0"></use><use xlink:href="#E18-MJMAIN-39" x="16224" y="0"></use></g></svg></span><script type="math/tex">2520/1080=2.333...>1.777...=16/9</script><span>。判断是长度过高，目标是压缩长度直到</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.645ex" height="1.968ex" viewBox="0 -756.6 2000 847.4" role="img" focusable="false" style="vertical-align: -0.211ex;"><defs><path stroke-width="0" id="E19-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E19-MJMAIN-39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path stroke-width="0" id="E19-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E19-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E19-MJMAIN-31"></use><use xlink:href="#E19-MJMAIN-39" x="500" y="0"></use><use xlink:href="#E19-MJMAIN-32" x="1000" y="0"></use><use xlink:href="#E19-MJMAIN-30" x="1500" y="0"></use></g></svg></span><script type="math/tex">1920</script><span>。</span></p><p><span>计算压缩比率</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.452ex" height="2.587ex" viewBox="0 -801 4500 1113.7" role="img" focusable="false" style="vertical-align: -0.726ex;"><defs><path stroke-width="0" id="E20-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E20-MJMAIN-39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path><path stroke-width="0" id="E20-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path stroke-width="0" id="E20-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="0" id="E20-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path stroke-width="0" id="E20-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E20-MJMAIN-31"></use><use xlink:href="#E20-MJMAIN-39" x="500" y="0"></use><use xlink:href="#E20-MJMAIN-32" x="1000" y="0"></use><use xlink:href="#E20-MJMAIN-30" x="1500" y="0"></use><use xlink:href="#E20-MJMAIN-2F" x="2000" y="0"></use><g transform="translate(2500,0)"><use xlink:href="#E20-MJMAIN-32"></use><use xlink:href="#E20-MJMAIN-35" x="500" y="0"></use><use xlink:href="#E20-MJMAIN-32" x="1000" y="0"></use><use xlink:href="#E20-MJMAIN-30" x="1500" y="0"></use></g></g></svg></span><script type="math/tex">1920/2520</script><span>得到</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.291ex" height="1.968ex" viewBox="0 -756.6 2278 847.4" role="img" focusable="false" style="vertical-align: -0.211ex;"><defs><path stroke-width="0" id="E21-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="0" id="E21-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E21-MJMAIN-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path stroke-width="0" id="E21-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path stroke-width="0" id="E21-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E21-MJMAIN-30"></use><use xlink:href="#E21-MJMAIN-2E" x="500" y="0"></use><use xlink:href="#E21-MJMAIN-37" x="778" y="0"></use><use xlink:href="#E21-MJMAIN-36" x="1278" y="0"></use><use xlink:href="#E21-MJMAIN-32" x="1778" y="0"></use></g></svg></span><script type="math/tex">0.762</script><span>(保留三位小数)，在对应的效果控件中将缩放从</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.484ex" height="1.968ex" viewBox="0 -756.6 1500 847.4" role="img" focusable="false" style="vertical-align: -0.211ex;"><defs><path stroke-width="0" id="E22-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E22-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E22-MJMAIN-31"></use><use xlink:href="#E22-MJMAIN-30" x="500" y="0"></use><use xlink:href="#E22-MJMAIN-30" x="1000" y="0"></use></g></svg></span><script type="math/tex">100</script><span>更改至</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.13ex" height="1.968ex" viewBox="0 -756.6 1778 847.4" role="img" focusable="false" style="vertical-align: -0.211ex;"><defs><path stroke-width="0" id="E23-MJMAIN-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path stroke-width="0" id="E23-MJMAIN-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path stroke-width="0" id="E23-MJMAIN-2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E23-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E23-MJMAIN-37"></use><use xlink:href="#E23-MJMAIN-36" x="500" y="0"></use><use xlink:href="#E23-MJMAIN-2E" x="1000" y="0"></use><use xlink:href="#E23-MJMAIN-32" x="1278" y="0"></use></g></svg></span><script type="math/tex">76.2</script><span>，效果完美。</span></p><p><span>· 音频采样率已默认选择48000Hz，其实44100Hz和48000HZ互相转化在16bit位深度下不会导致听觉可闻的损失，我们统一选择更高的采样率。</span></p><p><span>本文的大部分参数限制要求和采纳标准均可待日后整理，统一发布在某处告知众多制作人。</span></p><p><strong><span>关于选择段落的谏言</span></strong></p><p><span>“</span></p><p><span>“动机”，或称“乐想”，音译“母题”（Motif)，这个词指代作曲者在作曲时的一段简短的音乐灵感、反复再现的几个突出的音型、一小段音符构成的音乐片段。这些乐想通常奠定了该作品的主要基调，对作品有着特殊意义：“乐想是可用来辨别音乐主题的最小单位。”</span></p><p><span>现代流行音乐的制作，也有相当可观的程度来自于对一个动机的发展和延伸。它就嵌在音乐中最引人注目的那个地方，</span><strong><span>通常是副歌，但也不排除其他可能，如间奏，</span></strong><span>相当于它的标识。当然，一首歌本身也可能便是多个动机恰好彼此嵌合，拼凑而成，但更多的可能是由一个动机发展而来。找出这个标志的片段所在的位置，即可以在视频中展示它最为关键的部分。</span><strong><span>歌词本身也是找寻关键动机的一种线索，</span></strong><del><span>词作通常会在此处放飞自我。</span></del></p><p>&nbsp;</p><p><span>本文的流程是在完成找寻动机、裁切和拼凑后添加过渡。转到【效果】工作界面，选择【效果】-【音频过渡】-【交叉淡化】-【指数淡化】，拖动到两个视频分段的嵌合处。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705210515979.png" referrerpolicy="no-referrer" alt="image-20200705210515979"></p><p><span>随后选中这个过渡，点击【效果控件】，将持续时间设置为</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="15.098ex" height="1.968ex" viewBox="0 -756.6 6500.7 847.4" role="img" focusable="false" style="vertical-align: -0.211ex;"><defs><path stroke-width="0" id="E24-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path stroke-width="0" id="E24-MJMAIN-3A" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path><path stroke-width="0" id="E24-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="0" id="E24-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E24-MJMAIN-30"></use><use xlink:href="#E24-MJMAIN-30" x="500" y="0"></use><use xlink:href="#E24-MJMAIN-3A" x="1277" y="0"></use><g transform="translate(1833,0)"><use xlink:href="#E24-MJMAIN-30"></use><use xlink:href="#E24-MJMAIN-30" x="500" y="0"></use></g><use xlink:href="#E24-MJMAIN-3A" x="3111" y="0"></use><g transform="translate(3667,0)"><use xlink:href="#E24-MJMAIN-30"></use><use xlink:href="#E24-MJMAIN-31" x="500" y="0"></use></g><use xlink:href="#E24-MJMAIN-3A" x="4944" y="0"></use><g transform="translate(5500,0)"><use xlink:href="#E24-MJMAIN-31"></use><use xlink:href="#E24-MJMAIN-32" x="500" y="0"></use></g></g></svg></span><script type="math/tex">00:00:01:12</script><span>（对应24帧的1.5秒），并将对齐设为终点切入。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705210603450.png" referrerpolicy="no-referrer" alt="image-20200705210603450"></p><p>&nbsp;</p><p><span>最后，我们添加图片模板。</span></p></li><li><p><span>一压视频</span></p><p><span>【文件】-【导出】-【媒体】，选择【H.264】下的【匹配源-高比特率】。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705211244179.png" referrerpolicy="no-referrer" alt="image-20200705211244179"></p><p><span>然后将【视频】下的VBR，1次改为VBR，2次，即可完成本文概览中的一压导出设置。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705211346801.png" referrerpolicy="no-referrer" alt="image-20200705211346801"></p><p><span>一压码率已经很高且为2次VBR，故最高渲染质量可酌情开启，若剪辑预览时选择的是【完整】画质，此时可以打开【使用预览】，加快渲染速度。笔者剪辑时通常使用较低画质，故忽略此项。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705211830761.png" alt="image-20200705211830761" style="zoom:70%;" /></p><p><span>帧采样、帧混合、光流法是三种不同的差值算法，</span><strong><span>用来将不同视频帧率进行统一。</span></strong><span>有兴趣可以深入了解，推荐b站up主柏吃支醉的相关视频，同时可以更熟练掌握Pr，Ae两个软件。本文方法统一采用默认的帧采样，因为我们已将帧率限制在最低的24帧。</span></p></li><li><p><span>二压视频</span></p><p><span>将导出的一压视频拖动到小丸工具箱的【视频】第一栏。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705212738082.png" referrerpolicy="no-referrer" alt="image-20200705212738082"></p><p><span>选择编码器x264_64-8bit.exe。选择2Pass，并将码率设为2000Kbps。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705213355682.png" alt="image-20200705213355682" style="zoom:67%;" /></p><p><span>去掉【保持原分辨率】的勾，将宽度设为1280，将高度设为720。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705213507660.png" alt="image-20200705213507660" style="zoom:67%;" /></p><p><span>点击蓝色字设置音频参数。默认编码器为NeroACC，将码率调整为320Kbps。此时我们已经完成了二压的参数设置。</span></p><p><img src="C:\Users\Mash K\AppData\Roaming\Typora\typora-user-images\image-20200705213532084.png" alt="image-20200705213532084" style="zoom:67%;" /></p><p><span>回到【视频】点击压制，开始进行二压，需要等待两次进度条完成。</span></p><p><span>此时我们可以在原文件旁取得带有额外后缀_x264的.mp4文件了。将之命名为“校审一版”（或视次数增加版号）。该文件较为小巧，却保持了极佳的画面质量，可用于快速内部流通审核。</span></p></li><li><p><span>终压</span></p><p><span>当视频最终通过了内部审核，将该视频对应的一压视频导入小丸，勾选【保持原分辨率】，并将2Pass的码率设为5900Kbps，确保音频参数中的码率处于320Kbps，点击压制，经过两次进度条后，我们已经获得了可以上传的成品。</span></p></li></ol><h2><a name="小注" class="md-header-anchor"></a><span>小注</span></h2><p><span>为何要引入小丸？</span></p><p><span>首先，H.264并非恒定不变的压缩算法，而是处于开源社区的维护之中，不断更新换代，提升效能。</span><strong><span>但Adobe Premiere采用的H.264却是Adobe自家雇员编写的算法，已不再更新。</span></strong><span>压缩比率与效果不断落后，已经出现了肉眼可见的差异。通过引入小丸采用较新版本的H.264，可以有效提升同一码率下的画面表现力。</span></p><p><span>实际上，若编辑者懂得撰写计算机指令调用最新的H.264编解码器，是不需要小丸这一用户界面作为媒介的，甚至能使用更新版本的H.264，但这一操作存在门槛。虽然已经停止更新一段时间，小丸仍是一个不错的选择。</span></p><p><span>另一个选择是MeGUI，欢迎读者尝试，但本文仅给出相对简洁和有效的一种做法。</span></p><p>&nbsp;</p></div>
+</body>
+</html>
