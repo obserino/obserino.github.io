@@ -1,0 +1,632 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Broken Mirror</title><link href='https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' /><link href='https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+@include-when-export url(https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext);
+@include-when-export url(https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext);
+
+:root {
+	--control-text-color: #777;
+}
+
+/**
+ * forked from pixyll.com
+ * MIT license
+ */
+
+h1,
+.h1,
+.f1 {
+	font-size: 2rem;
+	line-height: 2.5rem;
+}
+h2,
+.h2,
+.f2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+h3,
+.h3,
+.f3 {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul,
+pre[cid],
+div[cid],
+#typora-source {
+	font-size: 1.125rem;
+	line-height: 1.5rem;
+}
+
+h4 {
+	font-size: 1.13rem;
+}
+/*
+ Pixyll
+ A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.
+ Best served with BASSCSS (http://jxnblk.github.io/basscss)
+ Crafted with <3 by John Otander (@4lpine) - ©2015 John Otander MIT License http://opensource.org/licenses/MIT
+
+*/
+
+body {
+	font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", "STSong", Serif;
+	line-height: 1.5rem;
+	font-weight: 400;
+}
+
+#write {
+	max-width: 914px;
+	color: #333;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media only screen and (min-width: 1700px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+}
+body {
+	font-size: 1.5rem;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.ty-table-edit {
+	background: #ededed;
+}
+
+table {
+	width: 100%;
+	font-size: 1.125rem;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+	padding: 12px;
+	line-height: 1.2;
+	vertical-align: top;
+	border-top: 1px solid #333;
+}
+table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #333;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+table > tbody + tbody {
+	border-top: 2px solid #333;
+}
+p {
+	font-weight: 300;
+	line-height: 1.5;
+}
+abbr {
+	border-bottom: 1px black dotted;
+	cursor: help;
+}
+pre,
+code {
+	font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code,
+.md-fences  {
+	color: #7a7a7a;
+}
+
+.md-fences {
+	padding: 1.125em;
+	margin-bottom: 0.88em;
+	font-size: 1rem;
+	border: 1px solid #7a7a7a;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+blockquote {
+	padding: 1.33em;
+	font-style: italic;
+	border-left: 5px solid #7a7a7a;
+	color: #555;
+}
+blockquote em {
+	color: #000;
+}
+blockquote footer {
+	font-size: .85rem;
+	font-style: normal;
+	background-color: #fff;
+	color: #7a7a7a;
+	border-color: transparent;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: "Lato", 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 1em 0 0.5em;
+}
+@media screen and (min-width: 48em) {
+	.h1,
+	h1 {
+		font-size: 3.250rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.298rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.625rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+	#write>h4.md-focus:before,
+	#write>h5.md-focus:before,
+	#write>h6.md-focus:before{
+		top: 1px;
+	}
+	.p,
+	p,
+	li {
+		font-size: 1.25rem;
+		line-height: 1.8;
+	}
+	table {
+		font-size: 1.25rem;
+	}
+}
+@media (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.3rem;
+	}
+}
+@media screen and (min-width: 64em) {
+	.h1,
+	h1 {
+		font-size: 4.498rem;
+	}
+	.h2,
+	h2 {
+		font-size: 2.29rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.9rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.591rem;
+	}
+	#write>h4.md-focus:before{
+		top:4px;
+	}
+}
+a {
+	color: #463F5C;
+	text-decoration: underline;
+}
+
+#write {
+	padding-top: 2rem;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	border: 0px;
+
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+
+	margin-left: -30px;
+	margin-bottom: 2em;
+	margin-top: -2010px;
+	padding-top: 2000px;
+	padding-bottom: 10px;
+	line-height: 1.5em;
+	color: #7a7a7a;
+	background-color: #fafafa;
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	clear: both;
+	padding-left: 0;
+	font-size:1.125rem;
+}
+.md-image>.md-meta {
+	color: #463F5C
+}
+.footnotes {
+	font-size:1.1rem;
+}
+.md-tag {
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+}
+.code-tooltip {
+	background: white;
+}
+.code-tooltip-content {
+	font-size: 1.1rem;
+}
+
+.task-list{
+	padding-left: 0;
+}
+
+.md-task-list-item {
+	padding-left:34px;
+}
+
+.md-task-list-item > input{
+	width: 1.25rem;
+	height: 1.25rem;
+	display: block;
+	-webkit-appearance: initial;
+	top: -0.2rem;
+	margin-left: -1.6em;
+	margin-top: calc(1rem - 7px);
+	border: none;
+}
+
+.md-task-list-item > input:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.md-task-list-item > input:before{
+	border: 1px solid #555;
+	border-radius: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: #fff;
+	content: ' ';
+	transition: background-color 200ms ease-in-out;
+	display: block;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	background: #333;
+	border-width: 2px;
+	display:inline-block;
+	transition: background-color 200ms ease-in-out;
+}
+
+.md-task-list-item > input:checked:after,
+.md-task-list-item > input[checked]:after {
+	opacity: 1;
+}
+
+.md-task-list-item > input:after {
+	opacity: 1;
+	-webkit-transition: opacity 0.05s ease-in-out;
+	-moz-transition: opacity 0.05s ease-in-out;
+	transition: opacity 0.05s ease-in-out;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 0.4375rem;
+	left: 0.28125rem;
+	width: 0.9375rem;
+	height: 0.5rem;
+	border: 3px solid #fff;
+	border-top: 0;
+	border-right: 0;
+	content: ' ';
+	opacity: 0;
+}
+
+.md-tag {
+	color:inherit;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+#typora-sidebar {
+	font-size:1rem !important;
+}
+
+.html-for-mac #typora-sidebar {
+	background-color:white;
+}
+
+.outline-content li, .outline-content ul {
+	font-size:1rem !important;
+}
+
+.outline-title {
+	line-height: inherit;
+	margin-top: 10px;
+}
+
+.outline-expander {
+	width: 18px;
+}
+
+.outline-expander:before {
+ 	content: "+";
+	font-family: inherit;
+	color: rgb(108, 108, 108); 
+  	font-size: 1.5rem;
+ 	top: 0.1rem;
+}
+
+.outline-expander:hover:before {
+	content: "+";
+}
+
+.outline-item-open>.outline-item>.outline-expander:before{
+	content: "-";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.os-windows #typora-source {
+	font-family: inherit;
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.md-diagram-panel {
+	margin-top: 24px;
+	margin-left: -1.2em;
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -3.4em;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><p><span>事情已经过去很久很久了，我甚至都忘了第一眼见到他是在什么时候。似乎是因为他的某个损友换上了他的照片作为头像，当时看了一眼便觉得这个孩子端的可爱——那个时候的我应该14岁出头。</span></p><p><span>初到那个学校便觉得一切都很新奇，见到打心里喜欢的孩子便不怎么拘束自己的行为。那个孩子的眉眼与家父似乎有几分相似，但却又饱满可爱不少，让我觉得天生可以亲近。我以前有摸别人脸和肚子的习惯（当然是可爱的男孩子），不知道怎的被他知道，还特意下载下一个模拟摸脸的软件，让我试着把玩。</span></p><p><span>唉，当时无论是他还是我就都没有意识到，我真正想要的并非止步于此。</span></p><p><span>那是一种自骨髓深处燃烧的火焰，是要将曾经的我付之一炬，熔化成不成型的模子的力量。</span></p><p><span>幼时的我，曾经在被公务繁忙的母亲不得不暂时扔下的时候，感受过这种力量。它让我无力摆弄手里的玩具，让我无法再注意手中的事务，书本和影像都不能使我安心，眼中只剩下痛苦和渴求。</span></p><p><span>渴求着她再回来看我一眼，用她的手拂过我的额头，轻轻拍拍我的脊背，哄我入眠。</span></p><p><span>而当我醒来的时候，如果身旁没有她的呼吸，我就会再度深陷于那种恐怖与压抑之中。</span></p><p><span>而我不知为何，也不知何时开始，宁愿顶嘴也不允许自己露出怯态。我的确继承了她的一丝倔强和决绝，连同家父的一些软弱和颓废。</span></p><p><span>她给我报名各类课程，送我去两三排陌生人坐着的房间，听若干个小时的内容。我知道有了这些钱财她原本可以拿去每年游玩一次，放松心情，调养生息。她可以不必再去带着我在文具批发市场斤斤计较地讲价、挑选最便宜的玩具。</span></p><p><span>她可以不必活的那么辛苦，交上她的心血换来的工资作为我的学费。</span></p><p><span>她可以不必那么急切地盯着我将课余的任务完成，不必催着我度过一个个亮着灯的夜晚——不必连她也无法休息。</span></p><p><span>但这样，我就不可能进入那所学校，也不会遇到他。</span></p><p><span>我或许会进入寻常的学校，在或明或暗的环境里，与或好或坏，或专注或散漫的人度过那三年。</span></p><p><span>我或许不会以如此年幼的姿态和心境进入那里，我或许不会在压力的刺激下，过早地萌发对爱意的追求。那股要将我付之一炬的火焰，或许到此时此刻都不会点燃，点燃地如此炽烈。</span></p><p><span>而它仍在燃烧。</span></p><p><span>......</span></p><p><span>我本没有什么机会与他相处、交流。我们并非同样的培养方向，也本不应由此认识。但当时的我不知到负了多大的勇气，仅仅在父母得知了一些机会的情况下，就敢去找到相关的主任，要求参加相关的选拔考试。</span></p><p><span>三个方向的考试安排正好重叠。负责人这样告诉我。意思是我只能二者择一。</span></p><p><span>而那个选择，我今日或许要打上一个问号：</span></p><p><span>若是我换上了另一种选择，是否能更早地接触他？</span></p><p><span>是否能提早了解他更深？</span></p><p><span>一切是会更好，亦或是机缘巧合之下，什么都不会发生？</span></p><p><span>甚至是干脆达不到考核标准被拒绝进入？</span></p><p><span>亦或是更坏？</span></p><p>&nbsp;</p><p><span>我无法判定。</span></p><p>&nbsp;</p><p><span>但若是没有这股锐气，此时的我就见不到一些事物，一些值得我花时间去自己思考的事物、思想和理论。时至今日，我的确走出了不少荒谬的旅程，将自己逼到了绝境，但我也确实收获甚多——对于一个此时如此颓废的我而言，稍微有些丰富的多。</span></p><p>&nbsp;</p><p><span>我的成绩并没有特别优异，但也没有烂到被拒绝进入。我选择的方向，恰好不是他所在的方向。我也因此没有什么机会去接触他。</span></p><p><span>我当时只顾着把大批量的知识塞进脑海，囫囵吞枣之下难以对另一方向的人有什么仔细察觉。但除了那里，我们还在同一个社团，却一次也没有共同完成过什么任务。</span></p><p><span>但凡一次、只要一次就好。那一年之后，我不时地会想到这点——我们若是能共事一段时间也好啊。若是能再多加深了解一下也好。</span></p><p>&nbsp;</p><p><span>入学的第一个冬季，我留在学校继续参加相关方向的课程。我因为本身和自己的课程安排冲突，落下了不少内容，平时自己也没有去认真补足，需要花更多时间。</span></p><p><span>到了晚上，我依旧走路去买一份麦记套餐，带回的路上薯条便吃的差不多，啃两下汉堡就可以继续...颓机了。</span></p><p><span>晚自习的间隙有铃声作响，同学们便知道自己可以放松一段时间。我出于某些习惯不怎么喜欢和课程班里的学生过度充分地往来。此时便也离开教室，去各处随意逛逛。</span></p><p><span>昏暗的校园里哪处亮着灯哪处暗着很是明显，或许不知道哪次我进了他所在的教室，或许不知道哪次我开始注意到了他。</span></p><p><span>他当时也是很有特点的孩子。不论是身上的气味、声音还是平常带的一些东西，被当时的我记得很清楚，在学生之中一眼就能辨认出来。认出他之后，我就会无意识地慢慢缀到一旁。（当初恋爱经验完全没有的我没能察觉到这是一种吸引力——然而现在也毫无这种经验）看他拿出平板，开始玩一个游戏。</span></p><p><span>（谨慎考虑，隐去/修饰一些细节，一些我记得清清楚楚的细节）</span></p><p><span>那个时候，能带来比较大的移动设备的学生，往往就是一群玩家的中心——我们的课程方向基本上不可能带笔记本。我看着他做好各个细小的调整，然后开始尝试某一关。游戏的背景音乐和音效在当时那个寒冷的晚上显得如此富有活力。</span></p><p><span>那个游戏也确实是好游戏。</span></p><p><span>那个时候，我因为一些事情和挫折失了些锐气，爱欲之焰也近乎干涸。寒假的校园难以见到熟悉的影子，班上的人亦平时末路。我困在每天相同景色的校园之中，不知道自己身在何处，只是缓缓地向前迈步。</span></p><p><span>他的气息、他的习惯不知为何，便一点点地住进了我的记忆之中，乃至染上了他的影子。</span></p><p><span>还是说我们本就有相似之处、共同的兴趣？他如果真的与我父亲有几分相似，而我又时常疏远后者的话，我是否是在他身上寻找某些关系的亲近？亦或是，如自恋到不得不坠入湖中寻求自己倒影的纳西索斯那般，在他人身上寻求着得不到的自己？</span></p><p><span>读者啊，无论你是何人，请原谅这看似被动，以内心戏为主，而外在看似微不足道的波澜吧。</span></p><p><span>将外在和内心隔绝，正是我对抗那若即若离的母爱的唯一办法，正是我对抗那些或明或暗的欺凌、骚扰、贬低、歧视的唯一办法。以随时准备切断关系的姿态，去和亲密的人或是不亲密的人、厌恶的人或是喜爱的人共处，是我能允许自己与之交流的唯一办法。</span></p><p><span>即便现在，也是如此。</span></p><p><span>在他的宿舍里，也在路过他宿舍的时候，我会去看一眼，但当时的我，升起了敲门看看的心思，却终究没有留步。</span></p><p><span>在那件事发生之前，我毫无察觉。在那件事发生之后，我感觉到回忆里的每个细节都在拷问着我。</span></p><p><span>但在那一段爱欲之火没有旺盛灼烧的平静日子里，我忘记了这种野兽般的紧张、威胁感。虽然我只是稍稍保持着自己内外的一点点防御和隔阂，度过了那段我认为自初中以来最开心的时光。但我却不得不再度将之拾起。竖起一颗一颗尖刺的同时，也任由它们贯穿五脏六腑，烈火灼心。</span></p><p>&nbsp;</p><p><span>那一年的暑假，由于某件事我不得不暂时放弃参加课程，事后想来却是无论如何也不该放弃的，但春季的一些课余的事情钝化了我的感觉，让我开始随波逐流。但我又有机会遇到了他。</span></p><p><span>他要走了，行程很赶。只留了一个白昼。</span></p><p><span>此后我会一直记住那个中午，那个时刻、那个地方将在我的记忆里反复回放，直到黑胶唱片的划痕一点一点地被磨损殆尽，直到声音失真、影像模糊，我仍会记住他靠在教室的墙上，我在他面前，问他，要不要来我住的宿舍休息一下。我忘了他究竟如何对答的，我只记得我的手拂过他的肚子（有没有胸膛，我不记得了），最终大胆地碰了碰他的裆下，却又缩回手来，不知道是在顾忌周围，还是担心这样会伤害他。</span></p><p><span>如果按我的性格，应当会抱住他的。</span></p><p><span>我应当会抱住他，但又担心太紧会压着他的呼吸，让他觉得局促，于是只能刻意收一些力。但我已无法确定了...</span></p><p><span>我不敢亲吻他——我不敢让自己的嘴唇触碰他的身体，仿佛“玷污”了他就是在玷污我自己一般。我也不想耽搁他的行程，让他不能好好参加那个安排——那将仿佛和我自己错失良机一样痛苦，也许还会更加遗憾。</span></p><p><span>但扪心自问，我在回忆里，哪怕是在能记起的最浑浊的梦境之中，也不曾对他有性欲上的渴求。但即便如此，那份干渴不仅丝毫未减，反而因其纯粹而更加变本加厉，蚀骨灼心。有的时候，身在梦中，我会走过走廊回到某间教室，看见他——我的第一反应却是远离不见、平日刻意的避让被投射到了梦中——我不想伤害他，更害怕梦境醒来，自受伤害。</span></p><p><span>倘若只是性欲，事情倒简单了！</span></p><p><span>倘若只是性欲，一切都简单了！</span></p><p>&nbsp;</p><p><span>“大坏蛋。”</span></p><p>&nbsp;</p><p><span>如果我能这样每天给他发个消息，慢慢地度过那个暑假，把这些事情埋在心里。</span></p><p><span>等到他回到学校，再去找他，看一看他都学到了什么，是不是还在玩那个游戏。</span></p><p><span>在周围无人的时候，再用胳膊环过他的脖子，把下巴贴在他的头发上，然后被他稍稍用力挣脱，苦笑着求我不要乱动。</span></p><p><span>慢慢地，我渐渐熟悉他的一切。他不是作为点燃我爱欲之火的人而在我眼里，而是作为一个有血有肉的人，一个喜欢一些有趣的事情的人，一个并非我的哺育者的、自由的人的时候。</span></p><p><span>等到我也慢慢摆脱过去的桎梏，不再对着自己爱着的人兵戈相见，不再戒备着随时可能离去的爱。</span></p><p><span>等到我的肾上腺素、我的应激反应纷纷消散，我便会少受爱欲缠身之苦。</span></p><p><span>等到那个时候，我也不必诘问他、或是诘问自己，是要做朋友，还是要做伴侣，亦或是亦友亦情——真实的关系不必分的那么开，仿佛工具一般分门别类。</span></p><p>&nbsp;</p><p><span>但...那件事...</span></p><p><span>即使在此时此刻，我仍旧不想描述，也一点也不想想起某个人。</span></p><p><span>恨意太过纯粹，厌恶之情太过激烈，反而让我根本不想去接触跟她有关的任何事情，更别提暗中干扰。</span></p><p><span>那样简直是脏了我自己的手，让我在这种无间地狱之中再往下更恶心的一层。或许我干脆不想再管任何与此有关的事情了。</span></p><p><span>在社团的两度合作的缘分，都不能使她先知会我一声这举动。或是至少给我留出心理准备的空间。</span></p><p><span>我知道自己关系不入主流，相应事情发生时占不得常理。但明知我已经动情，不论是之前就已经有了暗线还是突然生出意思，为何不稍稍考虑一下我的感受，稍稍说明一声，请我日后把握尺度。</span></p><p><span>即使是为了他，我也不会犹豫多少。</span></p><p>&nbsp;</p><p><span>而后，我对他的失手一击，成了对这摇摇欲坠的三角关系的最后一击。</span></p><p><span>我用出了我所能思考到的官腔，所能摆出的言辞，不顾他的感受，先把自己择了个明明白白。</span></p><p><span>所有锋利的刺向着心中长出，也向着外界展露。此刻，便是断绝。</span></p><p><span>再遇着他，我将自身视作行秽之物，退避三舍，再度拿起我面对母亲时的那副盔甲。</span></p><p><span>我可以在他身边和友人谈笑风生，仿佛全然没有意识到他的靠近。我可以装作厌恶地回避，仿佛他才是那个被厌恶的对象。</span></p><p><span>我可以不再去在意自己的其他事情，我可以去看看其他人，去找找其他意中人，然后再一次的以类似的方式断绝离去，不断坠落。</span></p><p><span>但...我终究，连在他面前维持一张假面都做不到。</span></p><p><span>因为他的确是好孩子，而我也是好孩子。</span></p><p><span>哈哈。</span></p><p><span>都是好孩子，所以才会如此......荒唐。</span></p><p><span>他但凡再稍稍坏一点，但凡多一点心术不正，我就可以将他拉到自己最厌恶的名单之中，此后逍遥太平。</span></p><p><span>我但凡再稍稍坏一点，但凡多一点心术不正，他就可以把我拉到自己最厌恶的名单之中，此后逍遥太平。</span></p><p>&nbsp;</p><p><span>哈哈。</span></p><p><span>世间事，荒谬者居多。</span></p><p><span>比起那真正的荒谬和混乱，比起那惨烈的矛盾，幕后的肮脏，这不过是一点茶余饭后的闲谈轶事罢了。</span></p><p><span>博诸君一笑。</span></p><p>&nbsp;</p><p>&nbsp;</p><hr /><p><span>我终于还是和他重逢了。</span></p><p><span>念念不忘，必有回响。</span></p><p><span>所以我才有勇气回溯记忆，收拾这么一个被我丢下如此之久的烂摊子。</span></p><p><span>把他拾掇拾掇，把那个我拾掇拾掇，从被随意埋葬、务求不要轻易回想起的记忆乱葬岗之中挖掘出来，好好入殓，再好好地把他送入土中，不求风光大葬，但求事事顺理。</span></p><p><span>而他的名字，也被我酿成了一坛酒。我不饮酒，但如果随意给我几杯汽水，再同我聊一聊这过去的名字，我便会醉。</span></p><p>&nbsp;</p><p><span>依然会醉。</span></p></div>
+</body>
+</html>
